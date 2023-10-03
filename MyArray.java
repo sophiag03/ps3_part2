@@ -139,10 +139,11 @@ public class MyArray  {
      */
     public void computeStatistics() {
         sum = 0;
-        min = arr[0];
-        max = arr[0];
+        min = 0;
+        max = 0;
         avg = 0;
         mid = 0;
+        if(numElements  != 0) {
         //SUM
         for (int i = 0; i < numElements; i++) {
             
@@ -178,7 +179,8 @@ public class MyArray  {
             int pos1 = numElements/2;
             int pos2 = pos1 - 1;
             mid = (arr[pos1] + arr[pos2])/2;
-        }            
+        }          
+    }  
     }
 
     /* method toString
