@@ -147,7 +147,7 @@ public class MyArray  {
         //SUM
         for (int i = 0; i < numElements; i++) {
             
-            sum =  sum + arr[i];
+            sum = sum + arr[i];
         }
 
         //MIN
@@ -168,8 +168,8 @@ public class MyArray  {
         //AVG
         for (int i = 0; i < numElements; i++) {
             avg += this.arr[i];
-            avg = avg/numElements;
         }
+        avg = avg/numElements;
 
         //MID
         int pos = numElements/2;
