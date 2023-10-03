@@ -32,8 +32,10 @@ public class MyArray  {
      */
     public MyArray() {
        this.arr = new int[DEFAULT_SIZE];
-       this.numElements = 0;
+       numElements = 0;
        inputElements();
+
+       computeStatistics();
     }
 
     /* CONSTRUCTOR
@@ -51,6 +53,8 @@ public class MyArray  {
         this.arr = new int[n];
         numElements = 0;
         inputElements();
+
+        computeStatistics();
     }
 
      /* CONSTRUCTOR 
@@ -65,14 +69,16 @@ public class MyArray  {
             throw new IllegalArgumentException();
         this.arr = new int[arr.length];
         for(int i = 0; i < arr.length; i++) {
-            this.arr[i] = arr[i];
-            this.numElements += 1;
+            if (validInput(arr[i])) {
+                this.arr[i] = arr[i];
+                this.numElements += 1;
+            }
         }
         computeStatistics();
     }
 
 //METHODS
-    
+
     /*method inputElements
      * 
      * asks the user for input and cycles elements through the
@@ -100,7 +106,7 @@ public class MyArray  {
 
         if(validInput(e) && numElements < this.arr.length) {
             this.arr[numElements] = e;
-            numElements ++;
+            numElements += 1;
             recurElements(input.nextInt());
         }
         else if (e == -999)
@@ -132,9 +138,6 @@ public class MyArray  {
      * 
      */
     public void computeStatistics() {
-        if(numElements == 0) {
-            //SOMETHING?
-        }
         //SUM
         for (int i = 0; i < numElements; i++) {
             sum += arr[i];
@@ -176,7 +179,7 @@ public class MyArray  {
      * 
      */
     public String toString() {
-        int[] newArr = new int[this.numElements];
+        int[] newArr = new int[numElements];
         for (int i = 0; i < newArr.length; i++)
             newArr[i] = this.arr[i];
         return Arrays.toString(newArr);
@@ -190,7 +193,7 @@ public class MyArray  {
      * 
      */
 
-    public int numOccurrences(int n) {
+    public int numOccurences(int n) {
         int occurr = 0;
         for (int i = 0; i < this.arr.length; i ++) {
             if (this.arr[i] == n)
@@ -221,12 +224,14 @@ public class MyArray  {
             for(int i = 0; i < position; i++) {
                 temp[i] = this.arr[i];
             }
+
             temp[position] = n;
+
             for(int i = position+1; i < this.arr.length; i++) {
                 temp[i] = this.arr[i-1];
             }
-            computeStatistics();
         }
+        computeStatistics();
         return bool;
     }
 
@@ -239,7 +244,7 @@ public class MyArray  {
      */
     public int remove(int position) {
         int retInt = -1;
-        if (position > 0 && position < numElements) {
+        if (position >= 0 && position < numElements) {
             retInt = this.arr[position];
             int[] temp = new int[this.arr.length - 1];
             for(int i = 0; i < position; i++) {
@@ -251,8 +256,8 @@ public class MyArray  {
             } 
             this.arr = temp;
             numElements -= 1;
-            computeStatistics();
         }
+        computeStatistics();
         return retInt;
     }
 
@@ -277,6 +282,7 @@ public class MyArray  {
             }
             this.arr = temp;
         }
+        computeStatistics();
         return bool;
     }
 
@@ -300,31 +306,37 @@ public class MyArray  {
 
     //returns the MyArray object
     public int[] getArr(){
+        computeStatistics();
         return this.arr;
     }
 
     // return sum
     public int getSum() {
+        computeStatistics();
         return sum;
     }
 
     //return min
     public int getMin() {
+        computeStatistics();
         return min;
     }
     
     //return max
     public int getMax() {
+        computeStatistics();
         return max;
     }
 
     //return avg
     public double getAvg() {
+        computeStatistics();
         return avg;
     }
 
     //return mid
     public double getMid() {
+        computeStatistics();
         return mid;
     }
 
@@ -332,8 +344,8 @@ public class MyArray  {
 
         System.out.println("\nUnit Test for MyArray.\n");
         //Scanner input = new Scanner(System.in);
-        int[] a = {3, 6, 7, 9, 11, 23};
-        MyArray mine = new MyArray(a);
+        //int[] a = {3, 6, 7, 9, 11, 23};
+        MyArray mine = new MyArray(3);
         System.out.println(mine.toString());
         System.out.println(mine.getAvg());
         System.out.println(mine.getSum());
