@@ -18,7 +18,7 @@ public class MyArray  {
     private int sum = 0;
     private int min = 0;
     private int max = 0;
-    private int avg = 0;
+    private double avg = 0;
     private int mid = 0;
     Scanner input = new Scanner(System.in);
 
@@ -143,7 +143,7 @@ public class MyArray  {
         max = 0;
         avg = 0;
         mid = 0;
-        if(numElements  != 0) {
+        if(numElements < 0) {
         //SUM
         for (int i = 0; i < numElements; i++) {
             
@@ -152,6 +152,7 @@ public class MyArray  {
 
         //MIN
         for (int i = 0; i < numElements; i++) {
+            min = arr[0];
             if(arr[i] < min) {
                 min = arr[i];
             }
@@ -159,6 +160,7 @@ public class MyArray  {
 
         //MAX
         for (int i = 0; i < numElements; i++) {
+            max = arr[0];
             if (arr[i] > max)
                 max = arr[i];
         }
@@ -166,20 +168,14 @@ public class MyArray  {
         //AVG
         for (int i = 0; i < numElements; i++) {
             avg += this.arr[i];
-        }
-        if (numElements > 0)
             avg = avg/numElements;
+        }
 
         //MID
-        if (numElements % 2 != 0) {
-            int pos = numElements/2;
-            mid = arr[pos];
-        }
-        if (numElements % 2 == 0) {
-            int pos1 = numElements/2;
-            int pos2 = pos1 - 1;
-            mid = (arr[pos1] + arr[pos2])/2;
-        }          
+        int pos = numElements/2;
+        mid = arr[pos];
+
+                
     }  
     }
 
@@ -340,7 +336,7 @@ public class MyArray  {
     }
 
     //return avg
-    public int getAvg() {
+    public double getAvg() {
         computeStatistics();
         return avg;
     }
