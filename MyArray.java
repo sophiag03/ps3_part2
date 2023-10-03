@@ -18,8 +18,8 @@ public class MyArray  {
     private int sum = 0;
     private int min = 0;
     private int max = 0;
-    private double avg = 0;
-    private double mid = 0;
+    private int avg = 0;
+    private int mid = 0;
     Scanner input = new Scanner(System.in);
 
 // CONSTRUCTORS
@@ -158,7 +158,8 @@ public class MyArray  {
         for (int i = 0; i < numElements; i++) {
             avg += arr[i];
         }
-        avg = avg/numElements;
+        if (numElements < 0)
+            avg = avg/numElements;
 
         //MID
         if (numElements % 2 != 0) {
@@ -166,8 +167,8 @@ public class MyArray  {
             mid = arr[pos];
         }
         if (numElements % 2 == 0) {
-            double pos1 = numElements/2;
-            double pos2 = pos1 - 1;
+            int pos1 = numElements/2;
+            int pos2 = pos1 - 1;
             mid = (pos1 + pos2)/2;
         }            
     }
@@ -329,13 +330,13 @@ public class MyArray  {
     }
 
     //return avg
-    public double getAvg() {
+    public int getAvg() {
         computeStatistics();
         return avg;
     }
 
     //return mid
-    public double getMid() {
+    public int getMid() {
         computeStatistics();
         return mid;
     }
