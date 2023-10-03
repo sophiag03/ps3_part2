@@ -138,27 +138,35 @@ public class MyArray  {
      * 
      */
     public void computeStatistics() {
+        sum = 0;
+        min = arr[0];
+        max = arr[0];
+        avg = 0;
+        mid = 0;
         //SUM
         for (int i = 0; i < numElements; i++) {
-            sum += arr[i];
+            
+            sum =  sum + arr[i];
         }
+
         //MIN
-        for (int i = 0; i < numElements - 1; i++) {
-            min = arr[i];
-            if (arr[i] > arr[i+1])
-                min = arr[i+1];
+        for (int i = 0; i < numElements; i++) {
+            if(arr[i] < min) {
+                min = arr[i];
+            }
         }
+
         //MAX
-        for (int i = 0; i < numElements - 1; i++) {
-            max = arr[i];
-            if (arr[i] < arr[i+1])
-                max = arr[i+1];
+        for (int i = 0; i < numElements; i++) {
+            if (arr[i] > max)
+                max = arr[i];
         }
+
         //AVG
         for (int i = 0; i < numElements; i++) {
-            avg += arr[i];
+            avg += this.arr[i];
         }
-        if (numElements < 0)
+        if (numElements > 0)
             avg = avg/numElements;
 
         //MID
@@ -169,7 +177,7 @@ public class MyArray  {
         if (numElements % 2 == 0) {
             int pos1 = numElements/2;
             int pos2 = pos1 - 1;
-            mid = (pos1 + pos2)/2;
+            mid = (arr[pos1] + arr[pos2])/2;
         }            
     }
 
@@ -341,18 +349,25 @@ public class MyArray  {
         return mid;
     }
 
+    public int getElements() {
+        return numElements;
+    }
+
     public static void main(String [] args) {
 
         System.out.println("\nUnit Test for MyArray.\n");
         //Scanner input = new Scanner(System.in);
         //int[] a = {3, 6, 7, 9, 11, 23};
-        MyArray mine = new MyArray(3);
+        MyArray mine = new MyArray();
         System.out.println(mine.toString());
+        System.out.println(mine.getElements());
         System.out.println(mine.getAvg());
         System.out.println(mine.getSum());
         System.out.println(mine.getMid());
-        System.out.println(mine.remove(2));
-        System.out.println(mine.toString());        
+        System.out.println(mine.getMax());
+        System.out.println(mine.getMin());
+        System.out.println(mine.computeHistogram());   
+
 	// TBA
 
     }
