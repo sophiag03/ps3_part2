@@ -229,6 +229,8 @@ public class MyArray  {
             bool = false; 
         else if (numElements == this.arr.length) // arr is full
             bool = false;
+        else if (!(validInput(n)))
+            bool = false;
         else{ 
             bool = true;
             int[] temp = new int[this.arr.length];
@@ -238,11 +240,13 @@ public class MyArray  {
 
             temp[position] = n;
             numElements +=1;
-
-            for(int i = position+1; i < this.arr.length; i++) {
+            
+            for(int i = position +1; i < numElements; i++) {
                 temp[i] = this.arr[i-1];
             }
+            this.arr = temp;
         }
+    
         computeStatistics();
         return bool;
     }
@@ -360,7 +364,7 @@ public class MyArray  {
 
         System.out.println("\nUnit Test for MyArray.\n");
         //Scanner input = new Scanner(System.in);
-        //int[] a = {3, 6, 7, 9, 11, 23};
+        //int[] a = {3, 6, 7, 9, 11, hi};
         MyArray mine = new MyArray();
         System.out.println(mine.toString());
         System.out.println(mine.getElements());
