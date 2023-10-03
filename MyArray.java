@@ -129,6 +129,7 @@ public class MyArray  {
      */
     public static boolean validInput(double num) {
         boolean bool = false;
+
         if (num >= LOWER && num <= UPPER){
             bool = true;
         }
@@ -236,6 +237,7 @@ public class MyArray  {
             }
 
             temp[position] = n;
+            numElements +=1;
 
             for(int i = position+1; i < this.arr.length; i++) {
                 temp[i] = this.arr[i-1];
@@ -256,12 +258,12 @@ public class MyArray  {
         int retInt = -1;
         if (position >= 0 && position < numElements) {
             retInt = this.arr[position];
-            int[] temp = new int[this.arr.length - 1];
+            int[] temp = new int[this.arr.length];
             for(int i = 0; i < position; i++) {
                 temp[i] = this.arr[i];
             }
-
-            for (int i = position + 1; i < this.arr.length; i++) {
+            //empty position
+            for (int i = position + 1; i < numElements; i++) {
                 temp[i-1] = this.arr[i];
             } 
             this.arr = temp;
