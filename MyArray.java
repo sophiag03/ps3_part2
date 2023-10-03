@@ -143,7 +143,7 @@ public class MyArray  {
         max = 0;
         avg = 0;
         mid = 0;
-        if(numElements < 0) {
+        if(numElements > 0) {
         //SUM
         for (int i = 0; i < numElements; i++) {
             
