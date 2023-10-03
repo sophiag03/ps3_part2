@@ -89,9 +89,11 @@ public class MyArray  {
      */
     public void inputElements() {
         System.out.println("Enter up to " + this.arr.length + " integers between " + LOWER + " and " + UPPER + " inclusive. Enter " + SENTINEL + " to end user input: ");
-        int element = input.nextInt();
+        /* if(input.nextLine() == null)
+            throw new IllegalArgumentException(); */
 
-        recurElements(element);
+        if(input.hasNextInt())
+            recurElements(input.nextInt());
 
         computeStatistics();
     }
@@ -103,16 +105,17 @@ public class MyArray  {
      * 
      */
     public void recurElements(int e) {
-
-        if(validInput(e) && numElements < this.arr.length) {
+        if (e == -999)
+            input.close();
+        
+        else if(input.hasNextInt() && validInput(e) && numElements < this.arr.length) {
             this.arr[numElements] = e;
             numElements += 1;
             recurElements(input.nextInt());
         }
-        else if (e == -999)
-            input.close();
         else { 
-            recurElements(input.nextInt());
+            if(input.hasNextInt())
+                recurElements(input.nextInt());
         }
 
     }
