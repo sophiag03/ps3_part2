@@ -20,7 +20,7 @@ public class MyArray  {
     private int max = 0;
     private double avg = 0;
     private int mid = 0;
-    Scanner input = new Scanner(System.in);
+    static Scanner input = new Scanner(System.in);
 
 // CONSTRUCTORS
 
@@ -89,12 +89,15 @@ public class MyArray  {
      */
     public void inputElements() {
         System.out.println("Enter up to " + this.arr.length + " integers between " + LOWER + " and " + UPPER + " inclusive. Enter " + SENTINEL + " to end user input: ");
-        /* if(input.nextLine() == null)
-            throw new IllegalArgumentException(); */
 
-        if(input.hasNextInt())
+        if(input.hasNextInt()) 
             recurElements(input.nextInt());
-
+        
+        else{
+            System.out.println("Those aren't all integers. You are going to have to start over:(");
+            throw new IllegalArgumentException();
+        }
+        input.close();
         computeStatistics();
     }
 
@@ -108,15 +111,19 @@ public class MyArray  {
         if (e == -999)
             input.close();
         
-        else if(input.hasNextInt() && validInput(e) && numElements < this.arr.length) {
+        else if(validInput(e) && numElements < this.arr.length) {
             this.arr[numElements] = e;
             numElements += 1;
             recurElements(input.nextInt());
         }
-        else { 
-            if(input.hasNextInt())
-                recurElements(input.nextInt());
+        else if(input.hasNextInt())
+            recurElements(input.nextInt());
+        
+        else {
+            System.out.println("I don't think those are all integers?! Time to start over...");
+            throw new IllegalArgumentException();
         }
+        
 
     }
 
