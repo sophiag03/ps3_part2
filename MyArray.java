@@ -71,7 +71,7 @@ public class MyArray  {
         for(int i = 0; i < arr.length; i++) {
             if (validInput(arr[i])) {
                 this.arr[i] = arr[i];
-                this.numElements += 1;
+                numElements += 1;
             }
         }
         computeStatistics();
@@ -79,7 +79,7 @@ public class MyArray  {
 
 //METHODS
 
-    /*method inputElements
+   /*method inputElements
      * 
      * asks the user for input and cycles elements through the
      * validInput method and adds them to the MyArray object
@@ -155,18 +155,19 @@ public class MyArray  {
         }
 
         //MIN
+        min = arr[0];
         for (int i = 0; i < numElements; i++) {
-            min = arr[0];
-            if(arr[i] < min) {
+            if (arr[i] < min) {
                 min = arr[i];
             }
         }
 
         //MAX
+        max = arr[0];
         for (int i = 0; i < numElements; i++) {
-            max = arr[0];
-            if (arr[i] > max)
+            if (arr[i] > max) {
                 max = arr[i];
+            }
         }
 
         //AVG
